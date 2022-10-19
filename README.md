@@ -1,4 +1,4 @@
-# ==============Fluxos de Renderização no React==============
+# ===Fluxos de Renderização no React===
 
 ## Pai para filho
 
