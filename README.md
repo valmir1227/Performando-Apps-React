@@ -1,34 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ==============Fluxos de Renderização no React==============
 
-## Getting Started
+## Pai para filho
 
-First, run the development server:
+tsx`
+<Pai>
+   <Filho/>
+<Pai/>`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Sempre que o componente pai tiver uma nova renderização, o coponente filho automaticamente vai ser renderizado novamente.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Propriedade
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+tsx`
+<Pai>
+   <Filho title="title"/>
+<Pai/>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+`
+Quando haver mudanças em alguma propriedade 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## HOOKs (useState, useContext, useReducer)
 
-## Learn More
+Mudanças nos hooks causam uma nova renderização
 
-To learn more about Next.js, take a look at the following resources:
+tsx`
+function Component() {
+	const [estado, setEstado] = useState()
+}
+`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Fluxo de renderização
+1. Gerar uma nova versão do componente que precisa ser renderizado;
+2. Comparar essa nova versão com a versão anteriror já salva na página;
+3. Se houverem alterações, o React "renderiza" essa nova versão em tela;
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## MEMO
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+ <strong>
+ <a href="https://pt-br.reactjs.org/docs/react-api.html">React.memo</a></strong> verifica apenas as alterações de prop. Se o seu componente de função envolvido em React.memo tiver um useState, useReducer ou useContext Hook em sua implementação, ele ainda será renderizado quando o estado ou o contexto mudar.
+
+
+igualdade referêncial
+
+tsx`
+Object.is()
+`
+
+Object.is() determina se dois valores correspondem ao mesmo valor. Dois valores correspondem ao mesmo valor se uma das seguintes condições for verdadeira:
+
+- ambos são undefined
+- ambos são null
+- ambos são true ou ambos são false
+- ambos são strings do mesmo comprimento, com os mesmos caracteres
+- ambos são o mesmo objeto
+- ambos são numéricos e
+- ambos são +0
+- ambos são -0
+- ambos são NaN
+- ou ambos são não-zero e ambos são não NaN e ambos correspondem ao mesmo valor
+
+
