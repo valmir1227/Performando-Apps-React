@@ -6,13 +6,23 @@ interface SearchResultsProps {
     price: number;
     title: string;
   }>;
+  onAddToWishList: (id: number) => void;
 }
 
-export default function SearchResults({ results }: SearchResultsProps) {
+export default function SearchResults({
+  results,
+  onAddToWishList,
+}: SearchResultsProps) {
   return (
     <div>
       {results.map((product) => {
-        return <ProductItem product={product} />;
+        return (
+          <ProductItem
+            key={product.id}
+            onAddToWishList={onAddToWishList}
+            product={product}
+          />
+        );
       })}
     </div>
   );

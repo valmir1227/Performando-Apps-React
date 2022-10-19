@@ -36,8 +36,6 @@ function Component() {
 
 ## MEMO
 
-
-
  <strong>
  <a href="https://pt-br.reactjs.org/docs/react-api.html">React.memo</a></strong> verifica apenas as alterações de prop. Se o seu componente de função envolvido em React.memo tiver um useState, useReducer ou useContext Hook em sua implementação, ele ainda será renderizado quando o estado ou o contexto mudar.
 
@@ -61,4 +59,10 @@ Object.is() determina se dois valores correspondem ao mesmo valor. Dois valores 
 - ambos são NaN
 - ou ambos são não-zero e ambos são não NaN e ambos correspondem ao mesmo valor
 
+## UseMemo
 
+O useMemoHook pode ser usado para impedir que funções caras e intensivas em recursos sejam executadas desnecessariamente.
+
+## UseCallback
+
+Um motivo para usar useCallbacké evitar que um componente seja renderizado novamente, a menos que suas props sejam alteradas.
