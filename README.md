@@ -65,4 +65,4 @@ O useMemoHook pode ser usado para impedir que funções caras e intensivas em re
 
 ## UseCallback
 
-Um motivo para usar useCallbacké evitar que um componente seja renderizado novamente, a menos que suas props sejam alteradas.
+Um motivo para usar useCallback é evitar que um componente seja renderizado novamente, a menos que suas props sejam alteradas.
