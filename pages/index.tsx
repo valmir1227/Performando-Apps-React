@@ -1,40 +1,40 @@
-import React, { FormEvent, useCallback, useState } from "react"
+import React, { FormEvent, useCallback, useState } from "react";
 import { SearchResults } from "../components/SearchResults";
 
 type Results = {
   totalPrice: number;
   data: any[];
-}
+};
 
 export default function Home() {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const [results, setResults] = useState<Results>({
     totalPrice: 0,
-    data: []
+    data: [],
   });
 
   async function handleSearch(event: FormEvent) {
     event.preventDefault();
 
-    const response = await fetch(`http://localhost:3333/products?q=${search}`)
+    const response = await fetch(`http://localhost:3333/products?q=${search}`);
     const data = await response.json();
 
-    const formatter = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
+    const formatter = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
     });
 
-    const products = data.map(product => {
+    const products = data.map((product: any) => {
       return {
         id: product.id,
         title: product.title,
         price: product.price,
-        priceFormatted: formatter.format(product.price)
+        priceFormatted: formatter.format(product.price),
       };
-    })
+    });
 
-    const totalPrice = data.reduce((total, product) => {
+    const totalPrice = data.reduce((total: any, product: any) => {
       return total + product.price;
     }, 0);
 
@@ -43,26 +43,26 @@ export default function Home() {
 
   const addToWishlist = useCallback(async (id: number) => {
     console.log(id);
-  }, []) 
+  }, []);
 
   return (
     <div>
       <h1>Search</h1>
 
       <form onSubmit={handleSearch}>
-        <input 
+        <input
           type="text"
-          value={search} 
-          onChange={e => setSearch(e.target.value)}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <button type="submit">Buscar</button>
       </form>
 
-      <SearchResults 
+      <SearchResults
         results={results.data}
         totalPrice={results.totalPrice}
         onAddToWishlist={addToWishlist}
       />
     </div>
-  )
+  );
 }
