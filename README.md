@@ -61,8 +61,31 @@ Object.is() determina se dois valores correspondem ao mesmo valor. Dois valores 
 
 ## UseMemo
 
-O useMemoHook pode ser usado para impedir que funções caras e intensivas em recursos sejam executadas desnecessariamente.
+O useMemoHook pode ser usado para impedir x  que funções caras e intensivas em recursos sejam executadas desnecessariamente.
 
 ## UseCallback
 
 Um motivo para usar useCallback é evitar que um componente seja renderizado novamente, a menos que suas props sejam alteradas.
+
+## !
+
+- Não faça cálculos no momento da renderização.
+
+## Code splitting 
+
+Cria múltiplos pacotes que podem ser carregados dinamicamente em tempo de execução. Evitando que seu bundle demore muito para carregar...
+Dividir o código de sua aplicação pode te ajudar a carregar somente o necessário ao usuário, o que pode melhorar dramaticamente o desempenho de sua aplicação.
+
+## Lazing load
+
+Em essência, o carregamento lento significa que um componente ou parte do código deve ser carregado quando necessário.
+Caso você tenha um aplicativo grande, como um sistema de gerênciamento de conteúdo com portal do cliente, administrador etc. Nesse caso não é uma boa ideia carregar o App inteiro.
+
+-  Será um aplicativo enorme e custará muita transferência de dados desnecessária, o que pode levar ao carregamento lento do site.
+
+- Um login de cliente não terá acesso a recursos específicos do administrador, portanto, carregá-lo é um desperdício de memória e tempo.
+
+### Vantagens 
+
+Em situações em que sabemos que determinados códigos/recursos não estarão acessíveis a todos os usuários ou o usuário não os acessa com frequência, é melhor carregá-los quando o usuário solicitar.
+
